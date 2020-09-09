@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="2" total="3" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default Suite" duration-ms="13746" started-at="2020-09-09T10:37:58 CST" finished-at="2020-09-09T10:38:11 CST">
+    <groups>
+    </groups>
+    <test name="360租房运营平台(Java)" duration-ms="13746" started-at="2020-09-09T10:37:58 CST" finished-at="2020-09-09T10:38:11 CST">
+      <class name="TestCase.Login">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:TestCase.Login@212bf671]" name="setUp" is-config="true" duration-ms="8630" started-at="2020-09-09T10:37:58 CST" finished-at="2020-09-09T10:38:06 CST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="TestCase1_Normal_Login(java.lang.String, java.lang.String)[pri:0, instance:TestCase.Login@212bf671]" name="TestCase1_Normal_Login" duration-ms="3616" started-at="2020-09-09T10:38:07 CST" data-provider="Normal_Account" finished-at="2020-09-09T10:38:10 CST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[admin]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[password]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TestCase1_Normal_Login -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:TestCase.Login@212bf671]" name="tearDown" is-config="true" duration-ms="1113" started-at="2020-09-09T10:38:10 CST" finished-at="2020-09-09T10:38:11 CST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- TestCase.Login -->
+    </test> <!-- 360租房运营平台(Java) -->
+  </suite> <!-- Default Suite -->
+</testng-results>

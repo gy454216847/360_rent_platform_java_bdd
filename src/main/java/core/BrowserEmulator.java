@@ -32,6 +32,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.io.File;
 import java.util.Set;
 
+
 /**
  * knife.BrowserEmulator is based on Selenium3 and adds some enhancements
  *
@@ -134,11 +135,10 @@ public class BrowserEmulator {
         } else if (by.equals("css")) {
             findelement = By.cssSelector(value);
         } else {
-            throw new knifeException("Please enter the correct targeting elements,'id','name','class','xpaht','css'.");
+            throw new knifeException("Please enter the correct targeting elements,'id','name','class','xpath','css'.");
         }
         new WebDriverWait(browser, second).until(ExpectedConditions
                 .presenceOfElementLocated(findelement));
-
     }
 
     /**
@@ -346,7 +346,7 @@ public class BrowserEmulator {
 
         waitElement(xpath, timeout);
 
-        String sreach_handle = browser.getWindowHandle();
+        String search_handle = browser.getWindowHandle();
         WebElement element = getElement(xpath);
         try {
             element.click();
@@ -356,7 +356,7 @@ public class BrowserEmulator {
 
         Set<String> handles = browser.getWindowHandles();
         for (String handle : handles) {
-            if (handle.equals(sreach_handle) == false) {
+            if (handle.equals(search_handle) == false) {
                 browser.switchTo().window(handle);
             }
         }

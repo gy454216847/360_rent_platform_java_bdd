@@ -1,52 +1,62 @@
 package TestCase;
 
-import core.knifeException;
-import core.BrowserEmulator;
+
+import io.qameta.allure.Feature;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import static org.testng.Assert.assertEquals;
 
-public class Login {
-    BrowserEmulator driver;
-    String url;
+@Feature("登录测试")
+public class Login extends myunit {
 
-    String usernameBox = "class=>el-input__inner";
-    String passwordBox = "xpath=>//*[@id=\"app\"]/div/div[2]/div/section[3]/div[2]/div/input";
-    String loginBtn = "class=>btn_login";
-
-    @BeforeMethod
-    public void setUp() throws knifeException {
-
-        url = "https://tc.lookdoor.cn:1999/";
-        driver = new BrowserEmulator();
-        driver.open(url);
-
-    }
 
     @DataProvider(name = "Normal_Account")
-    public Object[][] Keys(){
+    public Object[][] Keys() {
         return new Object[][]{
-                {"admin","password"}
+                {"admin", "password"}
 
         };
     }
 
-    @Test(dataProvider = "Normal_Account")
-    public void Testcase1_Normal_Login(String username,String password) throws InterruptedException {
-        driver.type(usernameBox, username);
-        driver.type(passwordBox, password);
-        driver.click(loginBtn);
-        Thread.sleep(3000);
+    @DataProvider(name = "Wrong_Account")
+    public Object[][] WrongKeys() {
+        return new Object[][]{
+                {"admin", "123456"}
+        };
+    }
+
+    @Test(dataProvider = "Normal_Account",description = "正常登陆")
+    public void TestCase1_Normal_Login(String username, String password) throws InterruptedException {
+        login_action(username, password);
+        assertEquals(driver.getText(login_info), "360租房运营平台");
 
     }
+
+    @Test(dataProvider = "Wrong_Account",description = "错误登陆")
+    public void TestCase2_Wrong_Login(String username, String password) throws InterruptedException {
+        login_action(username, password);
+        assertEquals(driver.getText(login_error_info), "账号或密码错误，请重新输入");
+
+    }
+
+    @Test(dataProvider = "Normal_Account",description = "登出测试")
+    public void TestCase3_logOut(String username, String password) throws InterruptedException {
+        login_action(username, password);
+        assertEquals(driver.getText(login_info), "360租房运营平台");
+        logout_action();
+        assertEquals(driver.getText(Logout_info), "360租房运营平台");
+
+
+    }
+
     @AfterMethod
-    public void tearDown(){
+    public void tearDown() {
         driver.quit();
-        }
-
     }
+
+}
 
 
 
