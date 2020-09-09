@@ -6,8 +6,15 @@ import core.knifeException;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
-public class myunit extends LoginPage {
+/**
+ * @author YGan
+ */
 
+public class Myunit extends LoginPage {
+
+    public BrowserEmulator getDriver(){
+        return driver;
+    }
     @BeforeMethod
     public void setUp() throws knifeException {
 

@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertEquals;
 
 @Feature("登录测试")
-public class Login extends myunit {
+public class Login extends Myunit {
 
 
     @DataProvider(name = "Normal_Account")
@@ -50,6 +50,7 @@ public class Login extends myunit {
 
 
     }
+
 
     @AfterMethod
     public void tearDown() {
