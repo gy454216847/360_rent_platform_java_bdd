@@ -31,6 +31,7 @@ public class Login extends Myunit {
     public void TestCase1_Normal_Login(String username, String password) throws InterruptedException {
         login_action(username, password);
         assertEquals(driver.getText(login_info), "360租房运营平台");
+        driver.isElementDisplayed(login_info);
 
     }
 

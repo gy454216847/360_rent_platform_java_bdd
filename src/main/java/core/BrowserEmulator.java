@@ -30,6 +30,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.Set;
 
+import static org.testng.Assert.assertTrue;
+
 
 /**
  * knife.BrowserEmulator is based on Selenium3 and adds some enhancements
@@ -415,7 +417,23 @@ public class BrowserEmulator {
         browser.switchTo().alert().dismiss();
     }
 
+    /**
+     * Check whether element is displayed.
+     */
+    public void isElementDisplayed(String xpath) throws knifeException{
 
+        WebElement element = getElement(xpath);
+        String name = element.getText();
+        if (element.isDisplayed()){
+            System.out.println(name + "--"+"元素存在");
+        }
+        else
+            {System.out.println(name + "--" + "元素不存在");
+             assertTrue(element.isDisplayed());
+
+        }
+
+    }
 
 
 }
