@@ -3,6 +3,9 @@ package Pages;
 import core.BrowserEmulator;
 import core.knifeException;
 
+/**
+ * @author YGan
+ */
 public class LoginPage {
     public static BrowserEmulator driver;
     public static String url;
@@ -15,13 +18,19 @@ public class LoginPage {
     public static String LogoutBtn = "class=>left_quit";
     public static String Logout_info = "xpath=>//*[@id=\"app\"]/div/div[2]/div/section[1]/div[2]/h6";
 
-    public static void login_action(String username, String password) throws InterruptedException {
-        driver.type(usernameBox, username);
-        driver.type(passwordBox, password);
-        driver.click(loginBtn);
-        Thread.sleep(3000);
+    static {
+        try {
+            driver = new BrowserEmulator();
+        } catch (knifeException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void OpenPage() throws InterruptedException {
+        driver.open("https://tc.lookdoor.cn:1999/staticCommunity/login");
 
     }
+
 
     public static void logout_action() throws knifeException {
         driver.waitElement(Account_name, 5);

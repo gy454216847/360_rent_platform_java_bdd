@@ -9,5 +9,8 @@
         <module name="360租房运营平台(Java)" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="360租房运营平台(Java)" target="1.5" />
+    </bytecodeTargetLevel>
   </component>
 </project>

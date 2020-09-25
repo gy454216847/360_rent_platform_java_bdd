@@ -139,6 +139,7 @@ public class BrowserEmulator {
         }
         new WebDriverWait(browser, second).until(ExpectedConditions
                 .presenceOfElementLocated(findelement));
+
     }
 
     /**

@@ -2,16 +2,16 @@
 <testng-results skipped="0" failed="0" ignored="2" total="3" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default Suite" duration-ms="13159" started-at="2020-09-10T11:25:30 CST" finished-at="2020-09-10T11:25:43 CST">
+  <suite name="Default Suite" duration-ms="13476" started-at="2020-09-24T15:02:47 CST" finished-at="2020-09-24T15:03:01 CST">
     <groups>
     </groups>
-    <test name="360租房运营平台(Java)" duration-ms="13159" started-at="2020-09-10T11:25:30 CST" finished-at="2020-09-10T11:25:43 CST">
+    <test name="360租房运营平台(Java) - BDD" duration-ms="13476" started-at="2020-09-24T15:02:47 CST" finished-at="2020-09-24T15:03:01 CST">
       <class name="TestCase.Login">
-        <test-method status="PASS" signature="setUp()[pri:0, instance:TestCase.Login@55ca8de8]" name="setUp" is-config="true" duration-ms="8496" started-at="2020-09-10T11:25:30 CST" finished-at="2020-09-10T11:25:39 CST">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:TestCase.Login@2d9d4f9d]" name="setUp" is-config="true" duration-ms="8668" started-at="2020-09-24T15:02:47 CST" finished-at="2020-09-24T15:02:56 CST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method status="PASS" signature="TestCase1_Normal_Login(java.lang.String, java.lang.String)[pri:0, instance:TestCase.Login@55ca8de8]" name="TestCase1_Normal_Login" duration-ms="3653" started-at="2020-09-10T11:25:39 CST" description="正常登陆" data-provider="Normal_Account" finished-at="2020-09-10T11:25:42 CST">
+        <test-method status="PASS" signature="TestCase1_Normal_Login(java.lang.String, java.lang.String)[pri:0, instance:TestCase.Login@2d9d4f9d]" name="TestCase1_Normal_Login" duration-ms="3605" started-at="2020-09-24T15:02:56 CST" description="正常登陆" data-provider="Normal_Account" finished-at="2020-09-24T15:03:00 CST">
           <params>
             <param index="0">
               <value>
@@ -27,11 +27,11 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- TestCase1_Normal_Login -->
-        <test-method status="PASS" signature="tearDown()[pri:0, instance:TestCase.Login@55ca8de8]" name="tearDown" is-config="true" duration-ms="707" started-at="2020-09-10T11:25:42 CST" finished-at="2020-09-10T11:25:43 CST">
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:TestCase.Login@2d9d4f9d]" name="tearDown" is-config="true" duration-ms="862" started-at="2020-09-24T15:03:00 CST" finished-at="2020-09-24T15:03:01 CST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
       </class> <!-- TestCase.Login -->
-    </test> <!-- 360租房运营平台(Java) -->
+    </test> <!-- 360租房运营平台(Java) - BDD -->
   </suite> <!-- Default Suite -->
 </testng-results>
