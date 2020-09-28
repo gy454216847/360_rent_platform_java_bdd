@@ -12,7 +12,7 @@ Feature: Normal Login
 
 
   @WrongLogin
-  Scenario Outline: Login with right username and password
+  Scenario Outline: Login with wrong username and password
     Given I am on the page
     When I input wrong "<username>" and wrong "<password>"
     And I click login button

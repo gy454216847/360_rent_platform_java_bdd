@@ -5,8 +5,14 @@ import io.cucumber.java.After;
 
 public class MyUnitSteps {
   @After
-    public void tearDown(){
+    public void tearDown() throws Exception {
 
-      LoginPage.driver.close();
+      LoginPage.driver.sendEmail();
+
+    //BrowserEmulator.browser.close();
+
   }
-}
+
+
+  }
+

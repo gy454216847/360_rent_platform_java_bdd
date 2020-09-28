@@ -27,7 +27,20 @@ import org.openqa.selenium.opera.OperaDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.yaml.snakeyaml.Yaml;
 
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
+import java.io.File;
+import java.io.FileInputStream;
+import java.util.Map;
+import java.util.Properties;
 import java.util.Set;
 
 import static org.testng.Assert.assertTrue;
@@ -40,7 +53,7 @@ import static org.testng.Assert.assertTrue;
  */
 public class BrowserEmulator {
 
-    static WebDriver browser;
+    public static WebDriver browser;
 
     int timeout = Integer.parseInt(GlobalSettings.timeout);
 
@@ -357,7 +370,7 @@ public class BrowserEmulator {
 
         Set<String> handles = browser.getWindowHandles();
         for (String handle : handles) {
-            if (handle.equals(search_handle) == false) {
+            if (!handle.equals(search_handle)) {
                 browser.switchTo().window(handle);
             }
         }
@@ -421,20 +434,119 @@ public class BrowserEmulator {
     /**
      * Check whether element is displayed.
      */
-    public void isElementDisplayed(String xpath) throws knifeException{
+    public void isElementDisplayed(String xpath) throws knifeException {
 
         WebElement element = getElement(xpath);
         String name = element.getText();
-        if (element.isDisplayed()){
-            System.out.println(name + "--"+"元素存在");
-        }
-        else
-            {System.out.println(name + "--" + "元素不存在");
-             assertTrue(element.isDisplayed());
+        if (element.isDisplayed()) {
+            System.out.println(name + "--" + "元素存在");
+        } else {
+            System.out.println(name + "--" + "元素不存在");
+            assertTrue(element.isDisplayed());
 
         }
 
     }
 
+    public  void sendEmail() throws Exception {
+        Yaml yaml = new Yaml();
+        File yamlFile = new File("src/main/java/config/email.yaml");
+        Map<String, String> data = (Map<String, String>) yaml.load(new FileInputStream(yamlFile));
+        String receives = data.get("receives");
+        String sender = data.get("sender");
+        String smtpserver = data.get("smtpserver");
+        final String user = data.get("user");
+        final String password = data.get("password");
+        String subject = data.get("subject");
+        String content = data.get("content");
 
-}
+
+        Properties properties = new Properties();
+
+        // 设置邮件服务器
+
+
+        properties.put("mail.smtp.host", smtpserver);
+        properties.put("mail.smtp.socketFactory.port", "465");
+        properties.put("mail.smtp.socketFactory.class","javax.net.ssl.SSLSocketFactory");
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.port", "25");
+
+
+        // 获取默认session对象
+        Session session = Session.getDefaultInstance(properties,new javax.mail.Authenticator() {
+
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                // 第二个参数，就是我QQ开启smtp的授权码
+                return new PasswordAuthentication(user, password);
+            }
+        });
+        session.setDebug(true);
+
+        try{
+            // 创建默认的 MimeMessage 对象
+            MimeMessage message = new MimeMessage(session);
+
+            // Set From: 头部头字段
+            message.setFrom(new InternetAddress(sender,"Garry","UTF-8"));
+
+            // Set To: 头部头字段
+            message.setRecipient(Message.RecipientType.TO,
+                    new InternetAddress(receives));
+
+            // Set Subject: 头部头字段
+            message.setSubject(subject,"UTF-8");
+
+            // 创建消息部分
+            BodyPart messageBodyPart1 = new MimeBodyPart();
+
+            // 消息
+            messageBodyPart1.setText(content);
+
+            // 创建另外一个MimeBodyPart对象，以便添加其他内容
+            MimeBodyPart messageBodyPart2 = new MimeBodyPart();
+
+            // 设置邮件中附件文件的路径
+            String filename = "target/cucumber/report.html";
+
+            // 创建一个datasource对象，并传递文件
+            DataSource source = new FileDataSource(filename);
+            // 设置handler
+            messageBodyPart2.setDataHandler(new DataHandler(source));
+            // 加载文件
+            messageBodyPart2.setFileName(filename);
+            // 创建一个MimeMultipart类的实例对象
+            Multipart multipart = new MimeMultipart();
+            multipart.addBodyPart(messageBodyPart1);
+            multipart.addBodyPart(messageBodyPart2);
+
+            // 发送完整消息
+            message.setContent(multipart );
+
+            // 发送消息
+            Transport.send(message);
+            System.out.println("Sent email successfully");
+        }catch (MessagingException e) {
+            throw new RuntimeException(e);
+
+        }
+
+
+
+    }
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
